@@ -23,22 +23,22 @@
 
 ## itemsテーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| name            | string     | null: false,                   |
-| explanation     | string     | null: false,                   |
-| category        | string     | null: false,                   |
-| status          | string     | null: false,                   |
-| delivery_charge | string     | null: false,                   |
-| shipping_area   | string     | null: false,                   |
-| shipping_days   | string     | null: false,                   |
-| price           | date       | null: false,                   |
-| user_id         | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false,                   |
+| explanation        | text       | null: false,                   |
+| category_id        | integer    | null: false,                   |
+| status_id          | integer    | null: false,                   |
+| delivery_charge_id | integer    | null: false,                   |
+| shipping_area_id   | integer    | null: false,                   |
+| shipping_days_id   | integer    | null: false,                   |
+| price              | integer    | null: false,                   |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :users
-- has_one :purchases
+- belongs_to :user
+- has_one :purchase
 
 ## purchasesテーブル
 | Column  | Type       | Options                       |
@@ -48,20 +48,20 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one :shipments
+- belongs_to :user
+- belongs_to :item
+- has_one :shipment
 
 ## shipmentsテーブル
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| postal_code     | integer(7) | null: false,                   |
-| prefectures     | string     | null: false,                   |
-| municipality    | string     | null: false,                   |
-| address         | string     | null: false,                   |
-| building_name   | string     |                                |
-| phone_number    | integer    | null: false,                   |
+| Column           | Type    | Options                        |
+| ---------------- | ------- | ------------------------------ |
+| postal_code      | string  | null: false,                   |
+| shipping_area_id | integer | null: false,                   |
+| municipality     | string  | null: false,                   |
+| address          | string  | null: false,                   |
+| building_name    | string  |                                |
+| phone_number     | string  | null: false,                   |
 
 ### Association
 
-- belongs_to :shipments
+- belongs_to :purchase
