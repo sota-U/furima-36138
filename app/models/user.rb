@@ -16,4 +16,5 @@ class User < ApplicationRecord
   validates :password,
             format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i,
                       message: 'It is invalid. Enter mixture half-width alphanumeric characters.' }
+  has_many :items
 end
