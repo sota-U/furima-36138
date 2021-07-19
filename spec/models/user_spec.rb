@@ -78,13 +78,13 @@ RSpec.describe User, type: :model do
 
       it 'last_nameが空では登録できない' do
         @user.last_name = ''
-        @user.first_name = ''
+        binding.pry
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
 
       it 'first_nameが空では登録できない' do
-        @user.fitst_name = ''
+        @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end

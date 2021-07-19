@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :explanation
-    validates :price
+    validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
     validates :user
     validates :image
   end
@@ -21,4 +21,5 @@ class Item < ApplicationRecord
   validates :delivery_charge_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_days_id, numericality: { other_than: 1, message: "can't be blank" }
+  #validates :price, numericality: { in: 300..9999999 }
 end
