@@ -18,10 +18,10 @@ class Item < ApplicationRecord
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
-  validates :category_id
-  validates :status_id
-  validates :delivery_charge_id
-  validates :shipping_area_id
-  validates :shipping_days_id
+    validates :category_id
+    validates :status_id
+    validates :delivery_charge_id
+    validates :shipping_area_id
+    validates :shipping_days_id
   end
 end
