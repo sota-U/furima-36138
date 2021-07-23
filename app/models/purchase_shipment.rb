@@ -8,7 +8,7 @@ class PurchaseShipment
     validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank" } 
     validates :municipality
     validates :address
-    validates :phone_number, numericality: { with: /\A\d{10}\z/ }
+    validates :phone_number, numericality: { with: /\A0[5789]0[-(]?\d{4}[-)]?\d{4}\z/ }, length: { minimum: 10, maximum: 11}
     #validates :purchase_id
     validates :user_id
     validates :item_id
