@@ -3,12 +3,21 @@ class OrdersController < ApplicationController
   def index
     @purchase_shipment = PurchaseShipment.new
     @item = Item.find(params[:item_id])
+    if user_signed_in?
+    if current_user.id == @item.user_id || @item.purchase.present?
+      redirect_to root_path
+    else
+      
+    end
+    else
+      redirect_to root_path
+    end
   end
 
   def create
     @purchase_shipment = PurchaseShipment.new(order_params)
-    item = Item.find(order_params[:item_id])
-    @price = item.price
+    @item = Item.find(order_params[:item_id])
+    @price = @item.price
     if @purchase_shipment.valid?
       pay_item
       @purchase_shipment.save
