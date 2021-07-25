@@ -8,6 +8,7 @@ FactoryBot.define do
     phone_number {'08022222222'}
     association :user
     association :item
+    token {"tok_abcdefghijk00000000000000000"}
     
   end
 end

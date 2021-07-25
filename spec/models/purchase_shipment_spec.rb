@@ -72,6 +72,12 @@ RSpec.describe PurchaseShipment, type: :model do
         @purchase_shipment.valid?
         expect(@purchase_shipment.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
+
+      it "tokenが空では登録できないこと" do
+        @purchase_shipment.token = nil
+        @purchase_shipment.valid?
+        expect(@purchase_shipment.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
