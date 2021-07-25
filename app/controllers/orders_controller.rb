@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index
     @purchase_shipment = PurchaseShipment.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
