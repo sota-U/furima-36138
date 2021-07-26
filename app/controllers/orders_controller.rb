@@ -1,17 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :user_check, only: [:index, :create]
 
   def index
     @purchase_shipment = PurchaseShipment.new
-    if user_signed_in?
-    if current_user.id == @item.user_id || @item.purchase.present?
-      redirect_to root_path
-    else
-      
-    end
-    else
-      redirect_to root_path
-    end
   end
 
   def create
@@ -25,7 +18,7 @@ class OrdersController < ApplicationController
       render 'index'
     end
   end
-  
+
   private
 
   def order_params
@@ -44,4 +37,13 @@ class OrdersController < ApplicationController
   def set_item
     @item = Item.find(order_params[:item_id])
   end
+
+  def user_check
+    if current_user.id == @item.user_id || @item.purchase.present?
+      redirect_to root_path
+    else
+      
+    end
+  end
+
 end
