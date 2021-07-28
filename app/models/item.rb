@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_days
 
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :purchase
 
   with_options presence: true do
@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :explanation
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
     validates :user
-    validates :image
+    validates :images
   end
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
